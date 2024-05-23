@@ -24,6 +24,7 @@ export interface Movie {
     title:string,
     img:string,
     totalSeats:number,
+    reservedSeats:number,
     reservation:Reservation
 }
 export const movieListHardCode:Array<Movie> =[
@@ -31,85 +32,32 @@ export const movieListHardCode:Array<Movie> =[
         "title": "Animal",
         "img": "https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABeYOwt43Qbc_MdUj7_ijb7rWI4t9INWI8Gzlh36Bgd3jlQiNWT3lt2cxKmXfysTMgRfHSbjLbt62U0s9I_W8Lbu-JFZXuG6N0dE.jpg?r=434",
         "totalSeats": 30,
+        "reservedSeats":0,
         "reservation": [
             [
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 2
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 3
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 4
-                }
-            ],
-            [
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 4
-                }
-            ],
-            [
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 4
                 }
             ],
@@ -120,18 +68,72 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 2
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 3
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 4
+                }
+            ],
+            [
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 0
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 1
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 2
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 3
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 4
+                }
+            ],
+            [
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 0
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 1
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 2
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 3
                 },
                 {
@@ -200,6 +202,7 @@ export const movieListHardCode:Array<Movie> =[
         "title": "Dunki",
         "img": "https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABfF6DDP9H0k3knc4_Uh2-SECtSrqoG6SQmvrWAmf12GWPRHP--iiQclbKu6xhsdzYz4_BTBj7g3LJWlcOK7P-3AUUNgdeerNUfk.jpg?r=e65",
         "totalSeats": 40,
+        "reservedSeats":0,
         "reservation": [
             [
                 {
@@ -262,13 +265,13 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 2
                 },
                 {
@@ -289,13 +292,13 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 2
                 },
                 {
@@ -316,13 +319,13 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 2
                 },
                 {
@@ -423,6 +426,7 @@ export const movieListHardCode:Array<Movie> =[
         "title": "12th Fail",
         "img": "https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABTsSh6h5SBiSLVeJdrrUS1bBysZmE7qA1gjDc6gLs4JpCZcIIoNeskRTPIHYugJojmFz1qhK_0lbTFwqkZfLBef7e-nLtwkpC8A.jpg?r=f15",
         "totalSeats": 42,
+        "reservedSeats":0,
         "reservation": [
             [
                 {
@@ -468,13 +472,13 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 1
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 2
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 3
                 },
                 {
@@ -500,13 +504,13 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 1
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 2
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 3
                 },
                 {
@@ -532,13 +536,13 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 1
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 2
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 3
                 },
                 {
@@ -564,13 +568,13 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 1
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 2
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 3
                 },
                 {
@@ -654,6 +658,7 @@ export const movieListHardCode:Array<Movie> =[
         "title": "Gangubai Kathiawadi",
         "img": "https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABUy2wJ6wXEzuLK4rk5X_O_RNAKLxII8U1IVjvUrAJF1Ox4y1rRjoCXTOLnl0IcttOJwT5xNII6vUS0mtZdlPutob50RIZHzyFKo.jpg?r=006",
         "totalSeats": 110,
+        "reservedSeats":0,
         "reservation": [
             [
                 {
@@ -724,70 +729,18 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 2
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 4
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 5
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 6
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 7
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 8
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 9
-                }
-            ],
-            [
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 2
-                },
-                {
                     "reserved": false,
                     "userName": "",
                     "seatNr": 3
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 4
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 5
                 },
                 {
@@ -838,162 +791,6 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 4
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 5
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 6
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 7
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 8
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 9
-                }
-            ],
-            [
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 4
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 5
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 6
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 7
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 8
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 9
-                }
-            ],
-            [
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 4
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 5
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 6
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 7
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 8
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 9
-                }
-            ],
-            [
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 4
-                },
-                {
                     "reserved": false,
                     "userName": "",
                     "seatNr": 5
@@ -1036,65 +833,13 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 2
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 3
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 4
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 5
-                },
-                {
                     "reserved": false,
                     "userName": "",
-                    "seatNr": 6
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 7
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 8
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 9
-                }
-            ],
-            [
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": false,
-                    "userName": "",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
                     "seatNr": 4
                 },
                 {
@@ -1226,23 +971,16 @@ export const movieListHardCode:Array<Movie> =[
                     "userName": "",
                     "seatNr": 9
                 }
-            ]
-        ]
-    },
-    {
-        "title": "Bohemian Rhapsody",
-        "img": "https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABTAlJxAHNsr4iqo_AkFokJtx9dEOKac5N23RDIdmMuRmt3Oitf5yt29CmHImXnbh4TNPlLQFdYpvm0y_k6bF9nuZQTr6WjQoF8c.jpg?r=704",
-        "totalSeats": 45,
-        "reservation": [
+            ],
             [
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
@@ -1259,17 +997,42 @@ export const movieListHardCode:Array<Movie> =[
                     "reserved": false,
                     "userName": "",
                     "seatNr": 4
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 5
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 6
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 7
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 8
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 9
                 }
             ],
             [
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
@@ -1283,20 +1046,45 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 3
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 4
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 5
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 6
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 7
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 8
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 9
                 }
             ],
             [
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
@@ -1310,20 +1098,45 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 3
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 4
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 5
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 6
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 7
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 8
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 9
                 }
             ],
             [
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
@@ -1337,101 +1150,45 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 3
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 4
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 5
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 6
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 7
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 8
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 9
                 }
             ],
             [
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 0
                 },
                 {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 4
-                }
-            ],
-            [
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 4
-                }
-            ],
-            [
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 1
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 4
-                }
-            ],
-            [
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": true,
-                    "userName": "admin",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 1
                 },
                 {
@@ -1440,41 +1197,39 @@ export const movieListHardCode:Array<Movie> =[
                     "seatNr": 2
                 },
                 {
-                    "reserved": true,
-                    "userName": "user",
+                    "reserved": false,
+                    "userName": "",
                     "seatNr": 3
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 4
-                }
-            ],
-            [
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 0
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 1
                 },
                 {
                     "reserved": false,
                     "userName": "",
-                    "seatNr": 2
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
-                    "seatNr": 3
-                },
-                {
-                    "reserved": true,
-                    "userName": "user",
                     "seatNr": 4
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 5
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 6
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 7
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 8
+                },
+                {
+                    "reserved": false,
+                    "userName": "",
+                    "seatNr": 9
                 }
             ]
         ]
@@ -1483,6 +1238,7 @@ export const movieListHardCode:Array<Movie> =[
         "title": "2 Fast 2 Furious",
         "img": "https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABciy075If8uklHrSxfcOQ3tLHSLrZifIN1rbZxl6erse8HabrG0AjeJkJLHP39JL8gObszGMPLqfQI36BSmJCna34G-3ze2FU-Yu7Gb6xWhPLPeoF05V2qKYEncFuiNe4e8rnhmK_AZpMt9SySAo4-h3M-nm1q1Lhyfv-Wo95EaUgrzW_rVB7J2f0sNABlhNVwnKgqeKHoq8cTDlv7idJoToW5qLoLHs7lX7xdEdRaWNZd97WgQotua0iP4cUhiZuEKpb3jGWNxOVgIFG3oYdjIJhQ.jpg?r=784",
         "totalSeats": 45,
+        "reservedSeats":0,
         "reservation": [
             [
                 {
@@ -1731,14 +1487,14 @@ export const movieListHardCode:Array<Movie> =[
     }
 ];
 
-const movieListHardCode2:Array<Movie> = [
-        {   title:'Top Gun: Maverick',
-            img:'https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABZ_rblqcHBS4lWmBXoMr-JRL6-oiSRFQ6E7MK-fjDNzHYvnqMFBZ3HRAmWVbMGxQtZtegrI-3qLlGyBKggmn-ES-lwULU9Qao1M.jpg?r=67e',
-            totalSeats:20,
-            reservation:[[{reserved:false,userName:'user', seatNr:1},],]
-
-        },
-]
+// const movieListHardCode2:Array<Movie> = [
+//         {   title:'Top Gun: Maverick',
+//             img:'https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABZ_rblqcHBS4lWmBXoMr-JRL6-oiSRFQ6E7MK-fjDNzHYvnqMFBZ3HRAmWVbMGxQtZtegrI-3qLlGyBKggmn-ES-lwULU9Qao1M.jpg?r=67e',
+//             totalSeats:20,
+//             reservation:[[{reserved:false,userName:'user', seatNr:1},],]
+//
+//         },
+// ]
 
 // const movieListHardCode1:Array<Movie> = [
 //     {

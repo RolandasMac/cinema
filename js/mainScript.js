@@ -50,14 +50,14 @@ function createMovieListPage() {
         toolbarBtnsList[1].classList.remove('d-none');
     }
     movieListPage.innerHTML = "";
+    console.log((localStorage.getItem('movieList')));
     // @ts-ignore
-    if (localStorage.getItem('movieList') === null) {
+    if (localStorage.getItem('movieList') === null || localStorage.getItem('movieList') === undefined || (localStorage.getItem('movieList')).length === 2) {
         alert('Tuščia');
         localStorage.setItem('movieList', JSON.stringify(movieListHardCode));
     }
     // @ts-ignore
     let movieList = JSON.parse(localStorage.getItem("movieList"));
-    console.log(movieList, 'MovieList');
     movieList.map((cur) => {
         let oneMovie = document.createElement('div');
         oneMovie.classList.add('oneMovie');
@@ -76,7 +76,7 @@ function createMovieListPage() {
         div.appendChild(label);
         let span = document.createElement('span');
         span.setAttribute('id', 'totalSeats');
-        span.textContent = `${cur.totalSeats}`;
+        span.textContent = `${cur.reservedSeats}/${cur.totalSeats}`;
         div.appendChild(span);
         if (role === "admin") {
             let span1 = document.createElement('span');
@@ -104,6 +104,7 @@ function addNeewMovie(e) {
         title: `${(addMoviePage.children[0].children[0].children[1]).value}`,
         img: `${(addMoviePage.children[0].children[1].children[1]).value}`,
         totalSeats: Number((addMoviePage.children[0].children[2].children[1]).value),
+        reservedSeats: 0,
         // reservation:[[{reserved:false,userName:'user', seatNr:1},],]
         reservation: []
     };
@@ -310,6 +311,7 @@ function confirmReservation(e) {
                     cur.reservation[(place.row) - 1][(place.column) - 1].reserved = false;
                     // @ts-ignore
                     cur.reservation[(place.row) - 1][(place.column) - 1].userName = "";
+                    cur.reservedSeats -= 1;
                 }
             }
             if (reservedPlaces.length) {
@@ -318,6 +320,7 @@ function confirmReservation(e) {
                     cur.reservation[(place.row) - 1][(place.column) - 1].reserved = true;
                     // @ts-ignore
                     cur.reservation[(place.row) - 1][(place.column) - 1].userName = role;
+                    cur.reservedSeats += 1;
                 }
             }
             curOneMovie.push(cur);
