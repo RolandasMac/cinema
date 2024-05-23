@@ -9,6 +9,7 @@ import {
     addMoviePage,
     addNewMovieBtn,
     oneMoviePage,
+    showRole,
 } from './constants.js';
 
 
@@ -61,7 +62,7 @@ let reservedPlaces:Reservation[] = [
     //   column:null
     // },
 ]
-
+let canceledReservation:Reservation[] = []
 
 //Functions
 
@@ -69,6 +70,7 @@ function choseRole(e:MouseEvent){
     role = (((((e.currentTarget) as HTMLHtmlElement).children[0].textContent) as string).toLowerCase()) as Role;
     // console.log(role);
     localStorage.setItem('currentUser', role);
+    showRole.textContent = `Role: ${localStorage.getItem('currentUser')}`;
     openPageByUser(role, movieListPage);
     toolbarBtnsList[0].classList.remove('d-none');
     createMovieListPage();
@@ -86,7 +88,8 @@ function createMovieListPage(){
     }
     movieListPage.innerHTML = "";
     // @ts-ignore
-    let movieList = JSON.parse(localStorage.getItem("movieList"))
+    let movieList = JSON.parse(localStorage.getItem("movieList"));
+    console.log(movieList, 'MovieList');
     movieList.map((cur:Movie):void=>{
         let oneMovie = document.createElement('div');
         oneMovie.classList.add('oneMovie');
@@ -227,12 +230,23 @@ function createOnePage(movieList:Movie[]){
                     oneSeat.classList.add('oneSeat');
                     if(movieList[0].reservation[r][c].reserved){
                         oneSeat.style.backgroundImage = `url("css/img/chair.png")`;
+                        oneSeat.setAttribute('reserved', 'true');
+
+                        oneSeat.setAttribute('row', `${r+1}`);
+                        oneSeat.setAttribute('column', `${c+1}`);
+
                         oneSeat.innerHTML = `
                     Eilė: ${r+1}<br>
                     Vieta: ${c+1}<br>
                     Reserved: ${movieList[0].reservation[r][c].userName}
                     `
                     }else{
+                        oneSeat.setAttribute('reserved', 'false');
+                        oneSeat.setAttribute('prereserved', 'false');
+
+                        oneSeat.setAttribute('row', `${r+1}`);
+                        oneSeat.setAttribute('column', `${c+1}`);
+
                         oneSeat.innerHTML = `
                     Eilė: ${r+1}<br>
                     Vieta: ${c+1}
@@ -258,11 +272,12 @@ function createOnePage(movieList:Movie[]){
 
         reservation.appendChild(places);
         const btn = document.createElement('button');
-        btn.textContent = 'Reserve places';
+        btn.textContent = 'Confirm reservation';
         btn.addEventListener('click', confirmReservation);
     reservation.appendChild(btn);
     oneMoviePage.appendChild(reservation);
     reservedPlaces = [];
+    canceledReservation = [];
 }
 
 function calcSeats(num:number):{columns:number, rows:number}{
@@ -283,17 +298,70 @@ function calcSeats(num:number):{columns:number, rows:number}{
 }
 
 function reservePlace(e:Event){
-    // alert('Reservation clicked!');
-    ((e.currentTarget) as HTMLHtmlElement).style.backgroundImage = `url("css/img/chair.png")`
-    // console.log(((e.currentTarget) as HTMLHtmlElement).textContent.replace(/\s/g, ''));
-    let reservedPlace = {
-        name:role,
-        row:Number(((e.currentTarget) as HTMLHtmlElement).textContent.trim().slice(5,7)),
-        column:Number(((e.currentTarget) as HTMLHtmlElement).textContent.trim().slice(-2))
+    if(((e.currentTarget) as HTMLHtmlElement).getAttribute('reserved') === 'false'){
+
+        if(((e.currentTarget) as HTMLHtmlElement).getAttribute('prereserved') === 'false'){
+            // alert('Reservation clicked!');
+            ((e.currentTarget) as HTMLHtmlElement).style.backgroundImage = `url("css/img/chair.png")`;
+            // console.log(((e.currentTarget) as HTMLHtmlElement).textContent.replace(/\s/g, ''));
+            ((e.currentTarget) as HTMLHtmlElement).setAttribute('prereserved','true');
+            let reservedPlace = {
+                name:role,
+                // @ts-ignore
+                row:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('row')),
+                // @ts-ignore
+                column:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('column'))
+            }
+            reservedPlaces.push(reservedPlace);
+            console.log(reservedPlaces);
+        }else{
+            ((e.currentTarget) as HTMLHtmlElement).setAttribute('prereserved','false');
+            // alert('Reservation clicked!');
+            ((e.currentTarget) as HTMLHtmlElement).style.backgroundImage = `url("css/img/chair1.png")`
+            // console.log(((e.currentTarget) as HTMLHtmlElement).textContent.replace(/\s/g, ''));
+            let reservedPlace = {
+                name:role,
+                // @ts-ignore
+                row:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('row')),
+                // @ts-ignore
+                column:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('column'))
+            }
+            reservedPlaces = reservedPlaces.filter((cur)=>{
+                return (cur.name!=reservedPlace.name||cur.row!=reservedPlace.row||cur.column!=reservedPlace.column)
+            });
+
+            console.log(reservedPlaces);
+
+
+        }
+
+
+    }else if((((e.currentTarget) as HTMLHtmlElement).getAttribute('reserved') === 'true')&&role==="admin"){
+        alert('Jūs norite panaikinti rezervaciją?!');
+
+
+        // console.log((((e.currentTarget) as HTMLHtmlElement).textContent).trim());
+            ((e.currentTarget) as HTMLHtmlElement).style.backgroundImage = `url("css/img/chair1.png")`;
+            // console.log(((e.currentTarget) as HTMLHtmlElement).textContent.replace(/\s/g, ''));
+            ((e.currentTarget) as HTMLHtmlElement).setAttribute('prereserved','false');
+        ((e.currentTarget) as HTMLHtmlElement).setAttribute('reserved','false');
+            let cancelReservedPlace = {
+                name:role,
+                // @ts-ignore
+                row:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('row')),
+                // @ts-ignore
+                column:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('column'))
+            }
+            canceledReservation.push(cancelReservedPlace);
+            console.log(canceledReservation);
+
+
+
+
+    }else{
+        alert('Ši vieta jau rezervuota!');
     }
 
-    reservedPlaces.push(reservedPlace);
-    console.log(reservedPlaces);
 }
 
 function confirmReservation(e:Event):void{
@@ -312,19 +380,34 @@ function confirmReservation(e:Event):void{
     // let curMovieIndex = currentMovieList.indexOf(curMovie[0]);
     //
     // console.log(currentMovieList, curMovie, curMovieIndex);
-
+    let curOneMovie:Movie[]=[];
     for(let cur of currentMovieList){
         if(cur.title===currentMovie){
+
+            if(canceledReservation.length){
+                for(let place of canceledReservation){
+                    // @ts-ignore
+                    cur.reservation[(place.row)-1][(place.column)-1].reserved = false;
+                    // @ts-ignore
+                    cur.reservation[(place.row)-1][(place.column)-1].userName = "";
+                }
+            }
+
+
             if(reservedPlaces.length){
                 for(let place of reservedPlaces){
+                    // @ts-ignore
                     cur.reservation[(place.row)-1][(place.column)-1].reserved = true;
+                    // @ts-ignore
                     cur.reservation[(place.row)-1][(place.column)-1].userName = role;
                 }
             }
+            curOneMovie.push(cur);
         }
     }
     localStorage.setItem('movieList', JSON.stringify(currentMovieList));
     console.log(currentMovieList);
+    createOnePage(curOneMovie)
 }
 
 
