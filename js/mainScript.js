@@ -1,4 +1,4 @@
-import { userChose, adminChose, loginPage, movieListPage, toolbarBtnsList, pageList, addMoviePage, addNewMovieBtn, oneMoviePage, showRole, movieListHardCode, } from './constants.js';
+import { userChose, adminChose, loginPage, movieListPage, toolbarBtnsList, pageList, addMoviePage, addNewMovieBtn, oneMoviePage, showRole, movieListHardCode, addMovie } from './constants.js';
 // EventListeners
 userChose.addEventListener('click', choseRole);
 adminChose.addEventListener('click', choseRole);
@@ -62,10 +62,11 @@ function createMovieListPage() {
         let oneMovie = document.createElement('div');
         oneMovie.classList.add('oneMovie');
         oneMovie.addEventListener('click', openOneMovePage);
-        let h4 = document.createElement('h4');
-        h4.textContent = cur.title;
-        oneMovie.appendChild(h4);
+        let h5 = document.createElement('h5');
+        h5.textContent = cur.title;
+        oneMovie.appendChild(h5);
         let img = document.createElement('img');
+        img.addEventListener('error', imgError);
         img.src = cur.img;
         oneMovie.appendChild(img);
         let div = document.createElement('div');
@@ -98,32 +99,44 @@ function createMovieListPage() {
     });
 }
 function addNeewMovie(e) {
-    e.preventDefault();
-    let places = calcSeats(Number((addMoviePage.children[0].children[2].children[1]).value));
-    let formData = {
-        title: `${(addMoviePage.children[0].children[0].children[1]).value}`,
-        img: `${(addMoviePage.children[0].children[1].children[1]).value}`,
-        totalSeats: Number((addMoviePage.children[0].children[2].children[1]).value),
-        reservedSeats: 0,
-        // reservation:[[{reserved:false,userName:'user', seatNr:1},],]
-        reservation: []
-    };
-    for (let r = 0; r < places.rows; r++) {
-        formData.reservation.push([]);
-        for (let c = 0; c < places.columns; c++) {
-            let onePlace = { reserved: false, userName: "", seatNr: c };
-            formData.reservation[r].push(onePlace);
+    if ((String((addMovie.children[0].children[0].children[1]).value).length > 2) && ((addMovie.children[0].children[1].children[1]).value).length > 2 && Number((addMovie.children[0].children[2].children[1]).value) > 4) {
+        e.preventDefault();
+        let places = calcSeats(Number((addMovie.children[0].children[2].children[1]).value));
+        let formData = {
+            title: `${(addMovie.children[0].children[0].children[1]).value}`,
+            img: `${(addMovie.children[0].children[1].children[1]).value}`,
+            totalSeats: Number((addMovie.children[0].children[2].children[1]).value),
+            reservedSeats: 0,
+            // reservation:[[{reserved:false,userName:'user', seatNr:1},],]
+            reservation: []
+        };
+        for (let r = 0; r < places.rows; r++) {
+            formData.reservation.push([]);
+            for (let c = 0; c < places.columns; c++) {
+                let onePlace = { reserved: false, userName: "", seatNr: c };
+                formData.reservation[r].push(onePlace);
+            }
         }
+        (addMovie.children[0].children[0].children[1]).value = "";
+        (addMovie.children[0].children[1].children[1]).value = "";
+        (addMovie.children[0].children[2].children[1]).value = "";
+        // Patikrinimas onChange metu
+        // @ts-ignore
+        let movieList = JSON.parse(localStorage.getItem("movieList"));
+        movieList.push(formData);
+        localStorage.setItem('movieList', JSON.stringify(movieList));
+        console.log(formData, movieList);
+        (e.target).classList.remove("btn-primary");
+        (e.target).classList.remove("btn-danger");
+        (e.target).classList.add("btn-success");
     }
-    (addMoviePage.children[0].children[0].children[1]).value = "";
-    (addMoviePage.children[0].children[1].children[1]).value = "";
-    (addMoviePage.children[0].children[2].children[1]).value = "";
-    // Patikrinimas onChange metu
-    // @ts-ignore
-    let movieList = JSON.parse(localStorage.getItem("movieList"));
-    movieList.push(formData);
-    localStorage.setItem('movieList', JSON.stringify(movieList));
-    console.log(formData, movieList);
+    else {
+        e.preventDefault();
+        (e.target).classList.remove("btn-primary");
+        (e.target).classList.remove("btn-success");
+        (e.target).classList.add("btn-danger");
+        // alert('Validation')
+    }
 }
 function removeMovie(e) {
     e.stopPropagation();
@@ -162,11 +175,16 @@ function createOnePage(movieList) {
     h3.textContent = movieList[0].title;
     movieInfo.appendChild(h3);
     const img = document.createElement('img');
+    img.addEventListener('error', imgError);
     img.src = movieList[0].img;
     movieInfo.appendChild(img);
     oneMoviePage.appendChild(movieInfo);
     const reservation = document.createElement('div');
     reservation.classList.add('reservation');
+    const screen = document.createElement('div');
+    screen.setAttribute('id', 'screen');
+    screen.style.backgroundImage = `url("css/img/screen.png")`;
+    reservation.appendChild(screen);
     const places = document.createElement('div');
     places.classList.add('places');
     places.style.gridTemplateColumns = `repeat(${cinemaPlaces.columns},1fr)`;
@@ -214,6 +232,8 @@ function createOnePage(movieList) {
     reservation.appendChild(places);
     const btn = document.createElement('button');
     btn.textContent = 'Confirm reservation';
+    btn.classList.add('btn');
+    btn.classList.add('btn-primary');
     btn.addEventListener('click', confirmReservation);
     reservation.appendChild(btn);
     oneMoviePage.appendChild(reservation);
@@ -329,4 +349,7 @@ function confirmReservation(e) {
     localStorage.setItem('movieList', JSON.stringify(currentMovieList));
     console.log(currentMovieList);
     createOnePage(curOneMovie);
+}
+function imgError(e) {
+    (e.target).src = 'https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289_640.jpg'; // place your error.png image instead
 }

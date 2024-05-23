@@ -1,18 +1,31 @@
 h1{
   color: red;
 }
+button{
+  border-radius: 5px;
+  &:hover{
+    transform: scale(1.05);
+  }
+  &:active{
+    transform: scale(.95);
+  }
+}
 #toolbar{
+  color: white;
+  background-color: #565c56;
   padding: 10px;
   //border: 1px solid red;
   position: relative;
-  height: 35px;
+  height: 50px;
   #role{
     position: absolute;
-    right: 0;
+    right: 10px;
   }
 }
 .page{
-  margin: 50px;
+  padding: 50px 10px;
+  background-color: #edcbcb;
+  min-height: 100vh;
 }
 #adminChose, #userChose{
   height: 150px;
@@ -24,12 +37,24 @@ h1{
   justify-content: center;
   align-items: center;
   font-size: 56px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+    &:hover{
+      cursor: pointer;
+      transform: scale(1.05);
+    }
+    &:active{
+      transform: scale(.95);
+    }
   span{
     font-size: 16px;
   }
 }
 #movieListPage{
   display: flex;
+  justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
   .oneMovie{
@@ -40,8 +65,19 @@ h1{
     border:1px solid black;
     border-radius: 10px;
     width: 200px;
-    height: 200px;
+    height: 300px;
     overflow: hidden;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+      &:hover{
+        cursor: pointer;
+        transform: scale(1.01);
+      }
+      &:active{
+        transform: scale(.99);
+      }
     img{
       object-fit: contain;
       max-height: 50%;
@@ -62,20 +98,27 @@ h1{
 
   }
 }
+#addMoviePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  #addMovie {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    height: 350px;
+    width: 300px;
+    background-color: #c9c5c5;
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
 
-#addMoviePage{
-  margin: 20px;
-  border: 1px solid black;
-  padding: 20px;
-  height: 300px;
-  width: 300px;
-  form{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
-    input{
-      width: 100%;
+      input {
+        width: 100%;
+      }
     }
   }
 }
@@ -93,6 +136,13 @@ h1{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    #screen{
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 150px;
+      width: 100%;
+    }
     .places{
       height: 100%;
       //display: flex;
@@ -119,6 +169,17 @@ h1{
         overflow: hidden;
         font-size: 12px;
         font-weight: bold;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        &:hover{
+          cursor: pointer;
+          transform: scale(1.05);
+        }
+        &:active{
+          transform: scale(.95);
+        }
         img{
           object-fit: contain;
           height: 100%;

@@ -11,6 +11,7 @@ import {
     oneMoviePage,
     showRole,
     movieListHardCode,
+    addMovie
 } from './constants.js';
 
 
@@ -48,7 +49,7 @@ addNewMovieBtn.addEventListener('click', addNeewMovie)
 
 
 
-// Action
+// Action data
 type Role ='admin'|'user'|""
 let role:Role = "";
 type Reservation = {
@@ -102,10 +103,11 @@ function createMovieListPage(){
         let oneMovie = document.createElement('div');
         oneMovie.classList.add('oneMovie');
         oneMovie.addEventListener('click', openOneMovePage);
-        let h4 = document.createElement('h4');
-        h4.textContent = cur.title;
-        oneMovie.appendChild(h4);
+        let h5 = document.createElement('h5');
+        h5.textContent = cur.title;
+        oneMovie.appendChild(h5);
         let img = document.createElement('img');
+        img.addEventListener('error', imgError)
         img.src = cur.img;
         oneMovie.appendChild(img);
         let div = document.createElement('div');
@@ -141,40 +143,54 @@ function createMovieListPage(){
 }
 
 function addNeewMovie(e:Event){
-    e.preventDefault();
-    let places = calcSeats(Number(((addMoviePage.children[0].children[2].children[1]) as HTMLInputElement).value));
 
-    let formData:Movie = {
-        title: `${((addMoviePage.children[0].children[0].children[1]) as HTMLInputElement).value}`,
-        img: `${((addMoviePage.children[0].children[1].children[1]) as HTMLInputElement).value}`,
-        totalSeats:Number(((addMoviePage.children[0].children[2].children[1]) as HTMLInputElement).value),
-        reservedSeats:0,
+    if((String(((addMovie.children[0].children[0].children[1]) as HTMLInputElement).value).length>2)&&(((addMovie.children[0].children[1].children[1]) as HTMLInputElement).value).length>2&& Number(((addMovie.children[0].children[2].children[1]) as HTMLInputElement).value)>4){
+        e.preventDefault();
+        let places = calcSeats(Number(((addMovie.children[0].children[2].children[1]) as HTMLInputElement).value));
+
+        let formData:Movie = {
+            title: `${((addMovie.children[0].children[0].children[1]) as HTMLInputElement).value}`,
+            img: `${((addMovie.children[0].children[1].children[1]) as HTMLInputElement).value}`,
+            totalSeats:Number(((addMovie.children[0].children[2].children[1]) as HTMLInputElement).value),
+            reservedSeats:0,
 
 
-        // reservation:[[{reserved:false,userName:'user', seatNr:1},],]
-        reservation:[]
-    };
+            // reservation:[[{reserved:false,userName:'user', seatNr:1},],]
+            reservation:[]
+        };
 
-    for(let r:number = 0; r<places.rows; r++){
-        formData.reservation.push([])
-        for(let c:number = 0; c<places.columns; c++){
-            let onePlace = {reserved:false,userName:"", seatNr:c}
-            formData.reservation[r].push(onePlace)
+        for(let r:number = 0; r<places.rows; r++){
+            formData.reservation.push([])
+            for(let c:number = 0; c<places.columns; c++){
+                let onePlace = {reserved:false,userName:"", seatNr:c}
+                formData.reservation[r].push(onePlace)
+            }
         }
+
+
+        ((addMovie.children[0].children[0].children[1]) as HTMLInputElement).value = "";
+        ((addMovie.children[0].children[1].children[1]) as HTMLInputElement).value = "";
+        ((addMovie.children[0].children[2].children[1]) as HTMLInputElement).value = "";
+
+        // Patikrinimas onChange metu
+
+        // @ts-ignore
+        let movieList = JSON.parse(localStorage.getItem("movieList"))
+        movieList.push(formData);
+        localStorage.setItem('movieList', JSON.stringify(movieList));
+        console.log(formData, movieList);
+        ((e.target) as HTMLButtonElement).classList.remove("btn-primary");
+        ((e.target) as HTMLButtonElement).classList.remove("btn-danger");
+        ((e.target) as HTMLButtonElement).classList.add("btn-success");
+    }else{
+        e.preventDefault();
+        ((e.target) as HTMLButtonElement).classList.remove("btn-primary");
+        ((e.target) as HTMLButtonElement).classList.remove("btn-success");
+        ((e.target) as HTMLButtonElement).classList.add("btn-danger");
+        // alert('Validation')
     }
 
 
-    ((addMoviePage.children[0].children[0].children[1]) as HTMLInputElement).value = "";
-    ((addMoviePage.children[0].children[1].children[1]) as HTMLInputElement).value = "";
-    ((addMoviePage.children[0].children[2].children[1]) as HTMLInputElement).value = "";
-
-    // Patikrinimas onChange metu
-
-    // @ts-ignore
-    let movieList = JSON.parse(localStorage.getItem("movieList"))
-    movieList.push(formData);
-    localStorage.setItem('movieList', JSON.stringify(movieList));
-    console.log(formData, movieList);
 }
 
 function removeMovie(e:Event){
@@ -208,9 +224,6 @@ function openOneMovePage(e:Event){
     })
     // console.log(movieList1, 1)
     createOnePage(movieList1)
-
-
-
 }
 
 function createOnePage(movieList:Movie[]){
@@ -222,12 +235,17 @@ function createOnePage(movieList:Movie[]){
         h3.textContent = movieList[0].title;
         movieInfo.appendChild(h3);
         const img = document.createElement('img');
+        img.addEventListener('error', imgError)
         img.src = movieList[0].img;
         movieInfo.appendChild(img);
     oneMoviePage.appendChild(movieInfo)
 
     const reservation = document.createElement('div');
         reservation.classList.add('reservation');
+        const screen = document.createElement('div') as HTMLDivElement;
+        screen.setAttribute('id', 'screen');
+        screen.style.backgroundImage = `url("css/img/screen.png")`;
+        reservation.appendChild(screen);
         const places = document.createElement('div');
         places.classList.add('places');
         places.style.gridTemplateColumns = `repeat(${cinemaPlaces.columns},1fr)`
@@ -282,6 +300,8 @@ function createOnePage(movieList:Movie[]){
         reservation.appendChild(places);
         const btn = document.createElement('button');
         btn.textContent = 'Confirm reservation';
+        btn.classList.add('btn');
+        btn.classList.add('btn-primary');
         btn.addEventListener('click', confirmReservation);
     reservation.appendChild(btn);
     oneMoviePage.appendChild(reservation);
@@ -421,6 +441,8 @@ function confirmReservation(e:Event):void{
     createOnePage(curOneMovie)
 }
 
-
+function imgError (e:Event) {
+    ((e.target) as HTMLImageElement).src = 'https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289_640.jpg'; // place your error.png image instead
+}
 
 

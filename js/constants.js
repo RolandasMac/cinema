@@ -7,6 +7,7 @@ export const toolbar = document.querySelector('#toolbar');
 export const toolbarBtnsList = toolbar.querySelectorAll('button');
 export const pageList = document.querySelectorAll('.page');
 export const addMoviePage = document.querySelector('#addMoviePage');
+export const addMovie = document.querySelector('#addMovie');
 export const addNewMovieBtn = document.querySelector('#addNewMovie');
 export const oneMoviePage = document.querySelector('#oneMoviePage');
 export const showRole = document.querySelector('#role');

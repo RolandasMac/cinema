@@ -2,18 +2,32 @@ h1 {
   color: red;
 }
 
+button {
+  border-radius: 5px;
+}
+button:hover {
+  transform: scale(1.05);
+}
+button:active {
+  transform: scale(0.95);
+}
+
 #toolbar {
+  color: white;
+  background-color: #565c56;
   padding: 10px;
   position: relative;
-  height: 35px;
+  height: 50px;
 }
 #toolbar #role {
   position: absolute;
-  right: 0;
+  right: 10px;
 }
 
 .page {
-  margin: 50px;
+  padding: 50px 10px;
+  background-color: #edcbcb;
+  min-height: 100vh;
 }
 
 #adminChose, #userChose {
@@ -26,6 +40,17 @@ h1 {
   justify-content: center;
   align-items: center;
   font-size: 56px;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#adminChose:hover, #userChose:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+#adminChose:active, #userChose:active {
+  transform: scale(0.95);
 }
 #adminChose span, #userChose span {
   font-size: 16px;
@@ -33,6 +58,7 @@ h1 {
 
 #movieListPage {
   display: flex;
+  justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
@@ -44,8 +70,19 @@ h1 {
   border: 1px solid black;
   border-radius: 10px;
   width: 200px;
-  height: 200px;
+  height: 300px;
   overflow: hidden;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#movieListPage .oneMovie:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+}
+#movieListPage .oneMovie:active {
+  transform: scale(0.99);
 }
 #movieListPage .oneMovie img {
   object-fit: contain;
@@ -65,19 +102,26 @@ h1 {
 }
 
 #addMoviePage {
-  margin: 20px;
-  border: 1px solid black;
-  padding: 20px;
-  height: 300px;
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-#addMoviePage form {
+#addMoviePage #addMovie {
+  border: 1px solid black;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  height: 350px;
+  width: 300px;
+  background-color: #c9c5c5;
+}
+#addMoviePage #addMovie form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
 }
-#addMoviePage form input {
+#addMoviePage #addMovie form input {
   width: 100%;
 }
 
@@ -97,6 +141,13 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
 }
+#oneMoviePage .reservation #screen {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 150px;
+  width: 100%;
+}
 #oneMoviePage .reservation .places {
   height: 100%;
   display: grid;
@@ -115,6 +166,17 @@ h1 {
   overflow: hidden;
   font-size: 12px;
   font-weight: bold;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#oneMoviePage .reservation .places .oneSeat:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+#oneMoviePage .reservation .places .oneSeat:active {
+  transform: scale(0.95);
 }
 #oneMoviePage .reservation .places .oneSeat img {
   object-fit: contain;
