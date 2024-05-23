@@ -1,0 +1,108 @@
+h1 {
+  color: red;
+}
+
+#adminChose, #userChose {
+  height: 150px;
+  width: 200px;
+  background-color: #ccc6c6;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 56px;
+}
+#adminChose span, #userChose span {
+  font-size: 16px;
+}
+
+#movieListPage {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+#movieListPage .oneMovie {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+#movieListPage .oneMovie img {
+  object-fit: contain;
+  max-height: 50%;
+}
+#movieListPage .oneMovie .movieFooter {
+  position: relative;
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+#movieListPage .oneMovie .movieFooter .removeMovie {
+  position: absolute;
+  right: 0;
+}
+
+#addMoviePage {
+  margin: 20px;
+  border: 1px solid black;
+  padding: 20px;
+  height: 300px;
+  width: 300px;
+}
+#addMoviePage form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+#addMoviePage form input {
+  width: 100%;
+}
+
+#oneMoviePage {
+  border: 1px solid black;
+  display: flex;
+  height: 90vh;
+}
+#oneMoviePage .novieInfo {
+  border: 1px solid black;
+  flex: 1;
+}
+#oneMoviePage .reservation {
+  flex: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#oneMoviePage .reservation .places {
+  height: 100%;
+  display: grid;
+  border: 1px solid black;
+}
+#oneMoviePage .reservation .places .oneSeat {
+  background-image: url("./img/chair1.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  overflow: hidden;
+}
+#oneMoviePage .reservation .places .oneSeat img {
+  object-fit: contain;
+  height: 100%;
+}
+
+/*# sourceMappingURL=style.css.map */

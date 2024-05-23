@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13_2_kontrolinis</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script type="module" src="./js/mainScript.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center">2024-05-22</h1>
+
+    <!--    -->
+    <div class="toolbar" id="toolbar">
+        <button class="d-none">Back to choose user</button>
+        <button class="d-none">Add movie</button>
+        <button class="d-none">Back to movie list</button>
+    </div>
+    <!--  Login page  -->
+    <div class="page loginPage d-flex justify-content-center gap-5" id="loginPage">
+        <div id="adminChose">👮
+            <span>Admin</span>
+        </div>
+        <div id="userChose">🧛
+            <span>User</span>
+        </div>
+
+    </div>
+
+    <!--  Movie list page  -->
+    <div class="page d-none" id="movieListPage">
+        <div class="oneMovie">
+            <h4>Top Gun: Maverick</h4>
+            <img alt=""
+                 src="https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABZ_rblqcHBS4lWmBXoMr-JRL6-oiSRFQ6E7MK-fjDNzHYvnqMFBZ3HRAmWVbMGxQtZtegrI-3qLlGyBKggmn-ES-lwULU9Qao1M.jpg?r=67e">
+            <div class="d-flex">
+                <label for="totalSeats">Totall seats:</label>
+                <span id="totalSeats">20</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!--  Add movie for admin  -->
+    <!--    ???  Būtinai patikrinimas!!!!!-->
+    <div class="page d-none" id="addMoviePage">
+        <form action="">
+            <div>
+                <label for="movieTitle">Movie title</label>
+                <input id="movieTitle" type="text">
+            </div>
+            <div>
+                <label for="movieImgLink">Movie image link</label>
+                <input id="movieImgLink" type="text">
+            </div>
+            <div>
+                <label for="movieseats">Total seats</label>
+                <input id="movieseats" type="number">
+            </div>
+            <input id="addNewMovie" type="submit">
+        </form>
+    </div>
+
+<!--  One movie page  -->
+    <div class="page d-none d-flex" id="oneMoviePage">
+        <div class="movieInfo">
+            <h3>Fighter</h3>
+            <img src="https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABTx7VTJlCzS0jw8GTnaZgIs4WDuqS2-bEkgFZ1x4phEEyrGMSRrLqfsJarQjxwCB3yFyzv1HTbXb1RWWqk7VaeF_nR_m0-XAI5M.jpg?r=804" alt="">
+        </div>
+        <div class="reservation">
+            <div class="places">
+                <div class="oneSeat">
+                    <img src="./css/img/chair.png" alt="">
+                </div>
+            </div>
+            <button>Reserve places</button>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
