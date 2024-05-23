@@ -168,7 +168,7 @@ function createOnePage(movieList) {
             const oneSeat = document.createElement('div');
             oneSeat.classList.add('oneSeat');
             if (movieList[0].reservation[r][c].reserved) {
-                oneSeat.style.backgroundImage = `url("../css/img/chair.png")`;
+                oneSeat.style.backgroundImage = `url("css/img/chair.png")`;
                 oneSeat.innerHTML = `
                     Eilė: ${r + 1}<br>
                     Vieta: ${c + 1}<br>
