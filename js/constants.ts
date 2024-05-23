@@ -1829,6 +1829,7 @@ const movieListHardCode2:Array<Movie> = [
 
 
 if(localStorage.getItem('movieList')===null||undefined){
+    alert('Tuščia')
     localStorage.setItem('movieList', JSON.stringify(movieListHardCode))
 }
 

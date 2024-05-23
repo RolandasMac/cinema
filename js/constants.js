@@ -1807,5 +1807,6 @@ const movieListHardCode2 = [
 //     },
 // ]
 if (localStorage.getItem('movieList') === null || undefined) {
+    alert('Tuščia');
     localStorage.setItem('movieList', JSON.stringify(movieListHardCode));
 }
