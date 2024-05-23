@@ -30,6 +30,11 @@ button:active {
   min-height: 100vh;
 }
 
+#loginPage {
+  background-image: url("/css/img/1.png");
+  background-size: cover;
+}
+
 #adminChose, #userChose {
   height: 150px;
   width: 200px;
@@ -126,12 +131,11 @@ button:active {
 }
 
 #oneMoviePage {
-  border: 1px solid black;
   display: flex;
   height: 90vh;
+  gap: 20px;
 }
 #oneMoviePage .novieInfo {
-  border: 1px solid black;
   flex: 1;
 }
 #oneMoviePage .reservation {
@@ -151,7 +155,6 @@ button:active {
 #oneMoviePage .reservation .places {
   height: 100%;
   display: grid;
-  border: 1px solid black;
 }
 #oneMoviePage .reservation .places .oneSeat {
   background-image: url("./img/chair1.png");
@@ -162,7 +165,6 @@ button:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
   overflow: hidden;
   font-size: 12px;
   font-weight: bold;

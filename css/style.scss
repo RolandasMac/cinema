@@ -27,6 +27,10 @@ button{
   background-color: #edcbcb;
   min-height: 100vh;
 }
+#loginPage{
+  background-image: url("/css/img/1.png");
+  background-size: cover;
+}
 #adminChose, #userChose{
   height: 150px;
   width: 200px;
@@ -123,11 +127,12 @@ button{
   }
 }
 #oneMoviePage{
-  border: 1px solid black;
+  //border: 1px solid black;
   display: flex;
   height: 90vh;
+  gap: 20px;
   .novieInfo{
-    border: 1px solid black;
+    //border: 1px solid black;
     flex: 1;
   }
   .reservation{
@@ -145,6 +150,7 @@ button{
     }
     .places{
       height: 100%;
+
       //display: flex;
       //flex-wrap: wrap;
       display: grid;
@@ -153,7 +159,7 @@ button{
 
 
 
-      border: 1px solid black;
+      //border: 1px solid black;
       .oneSeat{
         background-image: url("./img/chair1.png");
         background-size: contain;
@@ -163,7 +169,7 @@ button{
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 1px solid black;
+        //border: 1px solid black;
         //width: 35px;
         //height: 50px;
         overflow: hidden;
