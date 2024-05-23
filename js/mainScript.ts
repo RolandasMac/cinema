@@ -88,6 +88,8 @@ function createMovieListPage(){
         toolbarBtnsList[1].classList.remove('d-none');
     }
     movieListPage.innerHTML = "";
+
+    console.log(localStorage.getItem('movieList'), 'asdasdas')
     // @ts-ignore
     if(localStorage.getItem('movieList')===null||undefined){
         alert('Tuščia')
