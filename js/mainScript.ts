@@ -226,7 +226,7 @@ function createOnePage(movieList:Movie[]){
                     const oneSeat = document.createElement('div');
                     oneSeat.classList.add('oneSeat');
                     if(movieList[0].reservation[r][c].reserved){
-                        oneSeat.style.backgroundImage = `url("../css/img/chair.png")`;
+                        oneSeat.style.backgroundImage = `url("css/img/chair.png")`;
                         oneSeat.innerHTML = `
                     Eilė: ${r+1}<br>
                     Vieta: ${c+1}<br>
@@ -284,7 +284,7 @@ function calcSeats(num:number):{columns:number, rows:number}{
 
 function reservePlace(e:Event){
     // alert('Reservation clicked!');
-    ((e.currentTarget) as HTMLHtmlElement).style.backgroundImage = `url("../css/img/chair.png")`
+    ((e.currentTarget) as HTMLHtmlElement).style.backgroundImage = `url("css/img/chair.png")`
     // console.log(((e.currentTarget) as HTMLHtmlElement).textContent.replace(/\s/g, ''));
     let reservedPlace = {
         name:role,
