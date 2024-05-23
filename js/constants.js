@@ -10,7 +10,7 @@ export const addMoviePage = document.querySelector('#addMoviePage');
 export const addNewMovieBtn = document.querySelector('#addNewMovie');
 export const oneMoviePage = document.querySelector('#oneMoviePage');
 export const showRole = document.querySelector('#role');
-const movieListHardCode = [
+export const movieListHardCode = [
     {
         "title": "Animal",
         "img": "https://occ-0-5169-2774.1.nflxso.net/dnm/api/v6/Qs00mKCpRvrkl3HZAN5KwEL1kpE/AAAABeYOwt43Qbc_MdUj7_ijb7rWI4t9INWI8Gzlh36Bgd3jlQiNWT3lt2cxKmXfysTMgRfHSbjLbt62U0s9I_W8Lbu-JFZXuG6N0dE.jpg?r=434",
@@ -1806,7 +1806,7 @@ const movieListHardCode2 = [
 //         totalSeats:20
 //     },
 // ]
-if (localStorage.getItem('movieList') === null || undefined) {
-    alert('Tuščia');
-    localStorage.setItem('movieList', JSON.stringify(movieListHardCode));
-}
+// if(localStorage.getItem('movieList')===null||undefined){
+//     alert('Tuščia')
+//     localStorage.setItem('movieList', JSON.stringify(movieListHardCode))
+// }

@@ -10,6 +10,7 @@ import {
     addNewMovieBtn,
     oneMoviePage,
     showRole,
+    movieListHardCode,
 } from './constants.js';
 
 
@@ -87,6 +88,11 @@ function createMovieListPage(){
         toolbarBtnsList[1].classList.remove('d-none');
     }
     movieListPage.innerHTML = "";
+    // @ts-ignore
+    if(localStorage.getItem('movieList')===null||undefined){
+        alert('Tuščia')
+        localStorage.setItem('movieList', JSON.stringify(movieListHardCode))
+    }
     // @ts-ignore
     let movieList = JSON.parse(localStorage.getItem("movieList"));
     console.log(movieList, 'MovieList');
