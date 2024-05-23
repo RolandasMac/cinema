@@ -89,10 +89,10 @@ function createMovieListPage(){
     }
     movieListPage.innerHTML = "";
 
-    console.log((localStorage.getItem('movieList')).length, 'sdfsdfsdf')
+
     // @ts-ignore
-    if((localStorage.getItem('movieList')).length===0){
-        alert('Tuščia')
+    if(localStorage.getItem('movieList')===null){
+        alert('Tuščia');
         localStorage.setItem('movieList', JSON.stringify(movieListHardCode))
     }
     // @ts-ignore
