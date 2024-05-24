@@ -28,7 +28,7 @@ button{
   min-height: 100vh;
 }
 #loginPage{
-  background-image: url("/css/img/1.png");
+  background-image: url("../css/img/1.png");
   background-size: cover;
 }
 #adminChose, #userChose{
@@ -96,10 +96,8 @@ button{
       .removeMovie{
         position: absolute;
         right: 0;
-
       }
     }
-
   }
 }
 #addMoviePage {
@@ -119,7 +117,6 @@ button{
       flex-direction: column;
       justify-content: space-between;
       gap: 20px;
-
       input {
         width: 100%;
       }
@@ -150,15 +147,11 @@ button{
     }
     .places{
       height: 100%;
-
       //display: flex;
       //flex-wrap: wrap;
       display: grid;
       //grid-template-columns: repeat(5, 1fr);
       //grid-template-rows: repeat(4,1fr);
-
-
-
       //border: 1px solid black;
       .oneSeat{
         background-image: url("./img/chair1.png");
