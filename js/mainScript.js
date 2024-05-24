@@ -50,13 +50,11 @@ function createMovieListPage() {
     }
     movieListPage.innerHTML = "";
     console.log((localStorage.getItem('movieList')));
-    // @ts-ignore
     if (localStorage.getItem('movieList') === null || localStorage.getItem('movieList') === undefined || (localStorage.getItem('movieList')).length === 2) {
         alert('Tuščia');
         localStorage.setItem('movieList', JSON.stringify(movieListHardCode));
     }
-    // @ts-ignore
-    let movieList = JSON.parse(localStorage.getItem("movieList"));
+    let movieList = JSON.parse((localStorage.getItem("movieList")));
     movieList.map((cur) => {
         let oneMovie = document.createElement('div');
         oneMovie.classList.add('oneMovie');
@@ -112,8 +110,7 @@ function addNeewMovie(e) {
         (addMovie.children[0].children[0].children[1]).value = "";
         (addMovie.children[0].children[1].children[1]).value = "";
         (addMovie.children[0].children[2].children[1]).value = "";
-        // @ts-ignore
-        let movieList = JSON.parse(localStorage.getItem("movieList"));
+        let movieList = JSON.parse((localStorage.getItem("movieList")));
         movieList.push(formData);
         localStorage.setItem('movieList', JSON.stringify(movieList));
         console.log(formData, movieList);
@@ -132,8 +129,7 @@ function removeMovie(e) {
     e.stopPropagation();
     let movieTitle = (e.currentTarget).parentElement.parentElement.children[0].textContent;
     let currentEl = (e.currentTarget).parentElement.parentElement;
-    // @ts-ignore
-    let movieList = (JSON.parse(localStorage.getItem("movieList"))).filter((cur) => {
+    let movieList = (JSON.parse((localStorage.getItem("movieList")))).filter((cur) => {
         return cur.title !== movieTitle;
     });
     localStorage.setItem('movieList', JSON.stringify(movieList));
@@ -144,8 +140,7 @@ function openOneMovePage(e) {
     toolbarBtnsList[0].classList.add('d-none');
     toolbarBtnsList[2].classList.remove('d-none');
     let movieTitle = (e.currentTarget).children[0].textContent;
-    // @ts-ignore
-    let movieList1 = (JSON.parse(localStorage.getItem("movieList"))).filter((cur) => {
+    let movieList1 = (JSON.parse((localStorage.getItem("movieList")))).filter((cur) => {
         return cur.title === movieTitle;
     });
     createOnePage(movieList1);
@@ -234,9 +229,7 @@ function reservePlace(e) {
             (e.currentTarget).setAttribute('prereserved', 'true');
             let reservedPlace = {
                 name: role,
-                // @ts-ignore
                 row: Number((e.currentTarget).getAttribute('row')),
-                // @ts-ignore
                 column: Number((e.currentTarget).getAttribute('column'))
             };
             reservedPlaces.push(reservedPlace);
@@ -247,9 +240,7 @@ function reservePlace(e) {
             (e.currentTarget).style.backgroundImage = `url("css/img/chair1.png")`;
             let reservedPlace = {
                 name: role,
-                // @ts-ignore
                 row: Number((e.currentTarget).getAttribute('row')),
-                // @ts-ignore
                 column: Number((e.currentTarget).getAttribute('column'))
             };
             reservedPlaces = reservedPlaces.filter((cur) => {
@@ -264,9 +255,7 @@ function reservePlace(e) {
         (e.currentTarget).setAttribute('reserved', 'false');
         let cancelReservedPlace = {
             name: role,
-            // @ts-ignore
             row: Number((e.currentTarget).getAttribute('row')),
-            // @ts-ignore
             column: Number((e.currentTarget).getAttribute('column'))
         };
         canceledReservation.push(cancelReservedPlace);
@@ -277,25 +266,20 @@ function reservePlace(e) {
 }
 function confirmReservation(e) {
     let currentMovie = (e.currentTarget).parentElement.parentElement.children[0].children[0].textContent;
-    // @ts-ignore
-    let currentMovieList = (JSON.parse(localStorage.getItem("movieList")));
+    let currentMovieList = (JSON.parse((localStorage.getItem("movieList"))));
     let curOneMovie = [];
     for (let cur of currentMovieList) {
         if (cur.title === currentMovie) {
             if (canceledReservation.length) {
                 for (let place of canceledReservation) {
-                    // @ts-ignore
-                    cur.reservation[(place.row) - 1][(place.column) - 1].reserved = false;
-                    // @ts-ignore
+                    (cur.reservation[(place.row) - 1][(place.column) - 1].reserved) = false;
                     cur.reservation[(place.row) - 1][(place.column) - 1].userName = "";
                     cur.reservedSeats -= 1;
                 }
             }
             if (reservedPlaces.length) {
                 for (let place of reservedPlaces) {
-                    // @ts-ignore
                     cur.reservation[(place.row) - 1][(place.column) - 1].reserved = true;
-                    // @ts-ignore
                     cur.reservation[(place.row) - 1][(place.column) - 1].userName = role;
                     cur.reservedSeats += 1;
                 }

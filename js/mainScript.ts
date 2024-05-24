@@ -82,16 +82,12 @@ function createMovieListPage():void{
         toolbarBtnsList[1].classList.remove('d-none');
     }
     movieListPage.innerHTML = "";
-
     console.log((localStorage.getItem('movieList')));
-    // @ts-ignore
-    if(localStorage.getItem('movieList')===null||localStorage.getItem('movieList')===undefined||(localStorage.getItem('movieList')).length===2){
+    if(localStorage.getItem('movieList')===null||localStorage.getItem('movieList')===undefined||((localStorage.getItem('movieList'))as string).length===2){
         alert('Tuščia');
         localStorage.setItem('movieList', JSON.stringify(movieListHardCode))
     }
-    // @ts-ignore
-    let movieList = JSON.parse(localStorage.getItem("movieList"));
-
+    let movieList = JSON.parse((localStorage.getItem("movieList")) as string);
     movieList.map((cur:Movie):void=>{
         let oneMovie:HTMLDivElement = document.createElement('div');
         oneMovie.classList.add('oneMovie');
@@ -130,17 +126,14 @@ function addNeewMovie(e:Event):void{
         e.preventDefault();
         // Make seats from total seats number //
         let places:Places = calcSeats(Number(((addMovie.children[0].children[2].children[1]) as HTMLInputElement).value));
-
         let formData:Movie = {
             title: `${((addMovie.children[0].children[0].children[1]) as HTMLInputElement).value}`,
             img: `${((addMovie.children[0].children[1].children[1]) as HTMLInputElement).value}`,
             totalSeats:Number(((addMovie.children[0].children[2].children[1]) as HTMLInputElement).value),
-
             // Clear triggers
             reservedSeats:0,
             reservation:[]
         };
-
         for(let r:number = 0; r<places.rows; r++){
             formData.reservation.push([])
             for(let c:number = 0; c<places.columns; c++){
@@ -149,13 +142,11 @@ function addNeewMovie(e:Event):void{
             }
         }
 
-
         ((addMovie.children[0].children[0].children[1]) as HTMLInputElement).value = "";
         ((addMovie.children[0].children[1].children[1]) as HTMLInputElement).value = "";
         ((addMovie.children[0].children[2].children[1]) as HTMLInputElement).value = "";
 
-        // @ts-ignore
-        let movieList = JSON.parse(localStorage.getItem("movieList"))
+        let movieList = JSON.parse((localStorage.getItem("movieList")) as string);
         movieList.push(formData);
         localStorage.setItem('movieList', JSON.stringify(movieList));
         console.log(formData, movieList);
@@ -175,8 +166,7 @@ function removeMovie(e:Event):void{
     let movieTitle:string|null = ((((e.currentTarget) as HTMLElement).parentElement as HTMLElement).parentElement as HTMLElement).children[0].textContent;
     let currentEl:HTMLElement = (((e.currentTarget) as HTMLElement).parentElement as HTMLElement).parentElement as HTMLElement;
 
-    // @ts-ignore
-    let movieList = (JSON.parse(localStorage.getItem("movieList"))).filter((cur)=>{
+    let movieList = (JSON.parse((localStorage.getItem("movieList")) as string)).filter((cur:HTMLElement)=>{
         return cur.title !== movieTitle;
     })
     localStorage.setItem('movieList', JSON.stringify(movieList));
@@ -189,8 +179,7 @@ function openOneMovePage(e:Event):void{
     toolbarBtnsList[2].classList.remove('d-none');
     let movieTitle = ((e.currentTarget) as HTMLHtmlElement).children[0].textContent;
 
-    // @ts-ignore
-    let movieList1 = (JSON.parse(localStorage.getItem("movieList"))).filter((cur)=>{
+    let movieList1 = (JSON.parse((localStorage.getItem("movieList")) as string)).filter((cur:HTMLElement)=>{
         return cur.title === movieTitle;
     })
     createOnePage(movieList1)
@@ -283,9 +272,7 @@ function reservePlace(e:Event):void{
             ((e.currentTarget) as HTMLHtmlElement).setAttribute('prereserved','true');
             let reservedPlace:Reservation = {
                 name:role,
-                // @ts-ignore
                 row:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('row')),
-                // @ts-ignore
                 column:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('column'))
             }
             reservedPlaces.push(reservedPlace);
@@ -295,9 +282,7 @@ function reservePlace(e:Event):void{
             ((e.currentTarget) as HTMLHtmlElement).style.backgroundImage = `url("css/img/chair1.png")`;
             let reservedPlace:Reservation = {
                 name:role,
-                // @ts-ignore
                 row:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('row')),
-                // @ts-ignore
                 column:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('column'))
             }
             reservedPlaces = reservedPlaces.filter((cur:Reservation)=>{
@@ -311,9 +296,7 @@ function reservePlace(e:Event):void{
             ((e.currentTarget) as HTMLHtmlElement).setAttribute('reserved','false');
             let cancelReservedPlace:Reservation = {
                 name:role,
-                // @ts-ignore
                 row:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('row')),
-                // @ts-ignore
                 column:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('column'))
             }
             canceledReservation.push(cancelReservedPlace);
@@ -324,26 +307,21 @@ function reservePlace(e:Event):void{
 
 function confirmReservation(e:Event):void{
     let currentMovie = ((((e.currentTarget) as HTMLHtmlElement).parentElement as HTMLHtmlElement).parentElement as HTMLHtmlElement).children[0].children[0].textContent;
-    // @ts-ignore
-    let currentMovieList = (JSON.parse(localStorage.getItem("movieList")));
+    let currentMovieList = (JSON.parse((localStorage.getItem("movieList")) as string));
     let curOneMovie:Movie[]=[];
     for(let cur of currentMovieList){
         if(cur.title===currentMovie){
             if(canceledReservation.length){
                 for(let place of canceledReservation){
-                    // @ts-ignore
-                    cur.reservation[(place.row)-1][(place.column)-1].reserved = false;
-                    // @ts-ignore
-                    cur.reservation[(place.row)-1][(place.column)-1].userName = "";
+                    (cur.reservation[((place.row)as number)-1][((place.column)as number)-1].reserved) = false;
+                    cur.reservation[((place.row)as number)-1][((place.column)as number)-1].userName = "";
                     cur.reservedSeats -= 1;
                 }
             }
             if(reservedPlaces.length){
                 for(let place of reservedPlaces){
-                    // @ts-ignore
-                    cur.reservation[(place.row)-1][(place.column)-1].reserved = true;
-                    // @ts-ignore
-                    cur.reservation[(place.row)-1][(place.column)-1].userName = role;
+                    cur.reservation[((place.row)as number)-1][((place.column)as number)-1].reserved = true;
+                    cur.reservation[((place.row)as number)-1][((place.column)as number)-1].userName = role;
                     cur.reservedSeats += 1;
                 }
             }
@@ -358,5 +336,3 @@ function confirmReservation(e:Event):void{
 function imgError (e:Event):void {
     ((e.target) as HTMLImageElement).src = 'https://cdn.pixabay.com/photo/2019/04/24/21/55/cinema-4153289_640.jpg'; // place your error.png image instead
 }
-
-
