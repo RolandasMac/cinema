@@ -33,9 +33,8 @@ let canceledReservation = [];
 //Functions
 function choseRole(e) {
     role = (((e.currentTarget).children[0].textContent).toLowerCase());
-    // console.log(role);
     localStorage.setItem('currentUser', role);
-    showRole.textContent = `Role: ${localStorage.getItem('currentUser')}`;
+    showRole.textContent = `You are: ${localStorage.getItem('currentUser')}`;
     openPageByUser(role, movieListPage);
     toolbarBtnsList[0].classList.remove('d-none');
     createMovieListPage();
@@ -73,7 +72,7 @@ function createMovieListPage() {
         div.classList.add('movieFooter');
         let label = document.createElement('label');
         label.setAttribute('for', 'totalSeats');
-        label.textContent = "Total seats:";
+        label.textContent = "Reserved seats:";
         div.appendChild(label);
         let span = document.createElement('span');
         span.setAttribute('id', 'totalSeats');
@@ -87,27 +86,20 @@ function createMovieListPage() {
             div.appendChild(span1);
         }
         oneMovie.appendChild(div);
-        // oneMovie.innerHTML += `
-        //     <h4>${cur.title}</h4>
-        //     <img src="${cur.img}" alt="">
-        //     <div class="movieFooter">
-        //         <label for="totalSeats">Totall seats:</label>
-        //         <span id="totalSeats">${cur.totalSeats}</span>
-        //         ${role==="admin"?'<span class="removeMovie" onclick=\"removeMovie()\">❌</span>':''}
-        //     </div>`
         movieListPage.appendChild(oneMovie);
     });
 }
 function addNeewMovie(e) {
     if ((String((addMovie.children[0].children[0].children[1]).value).length > 2) && ((addMovie.children[0].children[1].children[1]).value).length > 2 && Number((addMovie.children[0].children[2].children[1]).value) > 4) {
         e.preventDefault();
+        // Make seats from total seats number //
         let places = calcSeats(Number((addMovie.children[0].children[2].children[1]).value));
         let formData = {
             title: `${(addMovie.children[0].children[0].children[1]).value}`,
             img: `${(addMovie.children[0].children[1].children[1]).value}`,
             totalSeats: Number((addMovie.children[0].children[2].children[1]).value),
+            // Clear triggers
             reservedSeats: 0,
-            // reservation:[[{reserved:false,userName:'user', seatNr:1},],]
             reservation: []
         };
         for (let r = 0; r < places.rows; r++) {
@@ -120,7 +112,6 @@ function addNeewMovie(e) {
         (addMovie.children[0].children[0].children[1]).value = "";
         (addMovie.children[0].children[1].children[1]).value = "";
         (addMovie.children[0].children[2].children[1]).value = "";
-        // Patikrinimas onChange metu
         // @ts-ignore
         let movieList = JSON.parse(localStorage.getItem("movieList"));
         movieList.push(formData);
@@ -135,12 +126,10 @@ function addNeewMovie(e) {
         (e.target).classList.remove("btn-primary");
         (e.target).classList.remove("btn-success");
         (e.target).classList.add("btn-danger");
-        // alert('Validation')
     }
 }
 function removeMovie(e) {
     e.stopPropagation();
-    // alert('removed')
     let movieTitle = (e.currentTarget).parentElement.parentElement.children[0].textContent;
     let currentEl = (e.currentTarget).parentElement.parentElement;
     // @ts-ignore
@@ -148,22 +137,17 @@ function removeMovie(e) {
         return cur.title !== movieTitle;
     });
     localStorage.setItem('movieList', JSON.stringify(movieList));
-    // createMovieListPage();
     currentEl.remove();
 }
 function openOneMovePage(e) {
-    // alert("One movie page opn f veikia!");
     openPageByUser(role, oneMoviePage);
-    // toolbarBtnsList[0].classList.remove('d-none');
     toolbarBtnsList[0].classList.add('d-none');
     toolbarBtnsList[2].classList.remove('d-none');
     let movieTitle = (e.currentTarget).children[0].textContent;
-    // let currentEl = (((e.currentTarget) as HTMLHtmlElement).parentElement as HTMLHtmlElement).parentElement as HTMLHtmlElement;
     // @ts-ignore
     let movieList1 = (JSON.parse(localStorage.getItem("movieList"))).filter((cur) => {
         return cur.title === movieTitle;
     });
-    // console.log(movieList1, 1)
     createOnePage(movieList1);
 }
 function createOnePage(movieList) {
@@ -219,16 +203,6 @@ function createOnePage(movieList) {
             places.appendChild(oneSeat);
         }
     }
-    // for(let i = 0; i<movieList[0].totalSeats; i++){
-    //     const oneSeat = document.createElement('div');
-    //     oneSeat.classList.add('oneSeat');
-    //     oneSeat.textContent = `${i+1}`
-    //     // const seatImg:HTMLImageElement = document.createElement('img');
-    //     // seatImg.src = "./css/img/chair.png";
-    //     // oneSeat.appendChild(seatImg);
-    //     // oneSeat.style.backgroundImage = url("./css/img/chair.png")
-    //     places.appendChild(oneSeat);
-    // }
     reservation.appendChild(places);
     const btn = document.createElement('button');
     btn.textContent = 'Confirm reservation';
@@ -242,7 +216,6 @@ function createOnePage(movieList) {
 }
 function calcSeats(num) {
     let a = Math.floor(Math.sqrt(num));
-    // console.log(a);
     let eiliuSk = 0;
     let vietuSk = 0;
     for (let i = a; i > 0; i--) {
@@ -252,15 +225,12 @@ function calcSeats(num) {
             break;
         }
     }
-    // console.log({vietuSK:vietuSk,eiliuSk:eiliuSk})
     return { columns: vietuSk, rows: eiliuSk };
 }
 function reservePlace(e) {
     if ((e.currentTarget).getAttribute('reserved') === 'false') {
         if ((e.currentTarget).getAttribute('prereserved') === 'false') {
-            // alert('Reservation clicked!');
             (e.currentTarget).style.backgroundImage = `url("css/img/chair.png")`;
-            // console.log(((e.currentTarget) as HTMLHtmlElement).textContent.replace(/\s/g, ''));
             (e.currentTarget).setAttribute('prereserved', 'true');
             let reservedPlace = {
                 name: role,
@@ -274,9 +244,7 @@ function reservePlace(e) {
         }
         else {
             (e.currentTarget).setAttribute('prereserved', 'false');
-            // alert('Reservation clicked!');
             (e.currentTarget).style.backgroundImage = `url("css/img/chair1.png")`;
-            // console.log(((e.currentTarget) as HTMLHtmlElement).textContent.replace(/\s/g, ''));
             let reservedPlace = {
                 name: role,
                 // @ts-ignore
@@ -287,14 +255,11 @@ function reservePlace(e) {
             reservedPlaces = reservedPlaces.filter((cur) => {
                 return (cur.name != reservedPlace.name || cur.row != reservedPlace.row || cur.column != reservedPlace.column);
             });
-            console.log(reservedPlaces);
         }
     }
     else if (((e.currentTarget).getAttribute('reserved') === 'true') && role === "admin") {
         alert('Jūs norite panaikinti rezervaciją?!');
-        // console.log((((e.currentTarget) as HTMLHtmlElement).textContent).trim());
         (e.currentTarget).style.backgroundImage = `url("css/img/chair1.png")`;
-        // console.log(((e.currentTarget) as HTMLHtmlElement).textContent.replace(/\s/g, ''));
         (e.currentTarget).setAttribute('prereserved', 'false');
         (e.currentTarget).setAttribute('reserved', 'false');
         let cancelReservedPlace = {
@@ -305,23 +270,15 @@ function reservePlace(e) {
             column: Number((e.currentTarget).getAttribute('column'))
         };
         canceledReservation.push(cancelReservedPlace);
-        console.log(canceledReservation);
     }
     else {
         alert('Ši vieta jau rezervuota!');
     }
 }
 function confirmReservation(e) {
-    // alert('confirm reservation veikia!');
     let currentMovie = (e.currentTarget).parentElement.parentElement.children[0].children[0].textContent;
     // @ts-ignore
     let currentMovieList = (JSON.parse(localStorage.getItem("movieList")));
-    // let curMovie = (JSON.parse(localStorage.getItem("movieList"))).filter((cur, index)=>{
-    //     return cur.title === currentMovie;
-    // })
-    // let curMovieIndex = currentMovieList.indexOf(curMovie[0]);
-    //
-    // console.log(currentMovieList, curMovie, curMovieIndex);
     let curOneMovie = [];
     for (let cur of currentMovieList) {
         if (cur.title === currentMovie) {
