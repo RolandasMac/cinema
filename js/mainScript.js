@@ -2,19 +2,19 @@ import { userChose, adminChose, loginPage, movieListPage, toolbarBtnsList, pageL
 // EventListeners
 userChose.addEventListener('click', choseRole);
 adminChose.addEventListener('click', choseRole);
-toolbarBtnsList[0].addEventListener('click', (event) => {
-    openPageByUser(role, loginPage);
+toolbarBtnsList[0].addEventListener('click', () => {
+    openPageByUser(loginPage);
     toolbarBtnsList[0].classList.add('d-none');
     toolbarBtnsList[1].classList.add('d-none');
 });
-toolbarBtnsList[1].addEventListener('click', (event) => {
-    openPageByUser(role, addMoviePage);
+toolbarBtnsList[1].addEventListener('click', () => {
+    openPageByUser(addMoviePage);
     toolbarBtnsList[0].classList.add('d-none');
     toolbarBtnsList[1].classList.add('d-none');
     toolbarBtnsList[2].classList.remove('d-none');
 });
-toolbarBtnsList[2].addEventListener('click', (event) => {
-    openPageByUser(role, movieListPage);
+toolbarBtnsList[2].addEventListener('click', () => {
+    openPageByUser(movieListPage);
     createMovieListPage();
     toolbarBtnsList[0].classList.remove('d-none');
     // toolbarBtnsList[1].classList.remove('d-none');
@@ -35,11 +35,11 @@ function choseRole(e) {
     role = (((e.currentTarget).children[0].textContent).toLowerCase());
     localStorage.setItem('currentUser', role);
     showRole.textContent = `You are: ${localStorage.getItem('currentUser')}`;
-    openPageByUser(role, movieListPage);
+    openPageByUser(movieListPage);
     toolbarBtnsList[0].classList.remove('d-none');
     createMovieListPage();
 }
-function openPageByUser(user, targetPage) {
+function openPageByUser(targetPage) {
     let curPage = (Array.from(pageList).filter((cur) => !cur.classList.contains('d-none')))[0];
     curPage.classList.add("d-none");
     targetPage.classList.remove('d-none');
@@ -136,7 +136,7 @@ function removeMovie(e) {
     currentEl.remove();
 }
 function openOneMovePage(e) {
-    openPageByUser(role, oneMoviePage);
+    openPageByUser(oneMoviePage);
     toolbarBtnsList[0].classList.add('d-none');
     toolbarBtnsList[2].classList.remove('d-none');
     let movieTitle = (e.currentTarget).children[0].textContent;

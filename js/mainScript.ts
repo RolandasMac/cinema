@@ -19,21 +19,21 @@ userChose.addEventListener('click', choseRole );
 
 adminChose.addEventListener('click', choseRole );
 
-toolbarBtnsList[0].addEventListener('click', (event:Event):void=>{
-    openPageByUser(role, loginPage);
+toolbarBtnsList[0].addEventListener('click', ():void=>{
+    openPageByUser(loginPage);
     toolbarBtnsList[0].classList.add('d-none');
     toolbarBtnsList[1].classList.add('d-none');
 })
 
-toolbarBtnsList[1].addEventListener('click', (event ):void=>{
-    openPageByUser(role, addMoviePage);
+toolbarBtnsList[1].addEventListener('click', ():void=>{
+    openPageByUser(addMoviePage);
     toolbarBtnsList[0].classList.add('d-none');
     toolbarBtnsList[1].classList.add('d-none');
     toolbarBtnsList[2].classList.remove('d-none');
 })
 
-toolbarBtnsList[2].addEventListener('click', (event ):void=>{
-    openPageByUser(role, movieListPage);
+toolbarBtnsList[2].addEventListener('click', ():void=>{
+    openPageByUser(movieListPage);
     createMovieListPage();
     toolbarBtnsList[0].classList.remove('d-none');
     // toolbarBtnsList[1].classList.remove('d-none');
@@ -66,12 +66,12 @@ function choseRole(e:MouseEvent):void{
     role = (((((e.currentTarget) as HTMLHtmlElement).children[0].textContent) as string).toLowerCase()) as Role;
     localStorage.setItem('currentUser', role);
     showRole.textContent = `You are: ${localStorage.getItem('currentUser')}`;
-    openPageByUser(role, movieListPage);
+    openPageByUser(movieListPage);
     toolbarBtnsList[0].classList.remove('d-none');
     createMovieListPage();
 }
 
-function openPageByUser(user:string, targetPage:HTMLElement):void{
+function openPageByUser(targetPage:HTMLElement):void{
     let curPage:Element = (Array.from(pageList).filter((cur:Element)=>!cur.classList.contains('d-none')))[0];
     curPage.classList.add("d-none");
     targetPage.classList.remove('d-none');
@@ -174,7 +174,7 @@ function removeMovie(e:Event):void{
 }
 
 function openOneMovePage(e:Event):void{
-    openPageByUser(role, oneMoviePage);
+    openPageByUser(oneMoviePage);
     toolbarBtnsList[0].classList.add('d-none');
     toolbarBtnsList[2].classList.remove('d-none');
     let movieTitle = ((e.currentTarget) as HTMLHtmlElement).children[0].textContent;
