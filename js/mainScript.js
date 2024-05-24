@@ -49,7 +49,6 @@ function createMovieListPage() {
         toolbarBtnsList[1].classList.remove('d-none');
     }
     movieListPage.innerHTML = "";
-    console.log((localStorage.getItem('movieList')));
     if (localStorage.getItem('movieList') === null || localStorage.getItem('movieList') === undefined || (localStorage.getItem('movieList')).length === 2) {
         alert('Tuščia');
         localStorage.setItem('movieList', JSON.stringify(movieListHardCode));
@@ -113,7 +112,6 @@ function addNeewMovie(e) {
         let movieList = JSON.parse((localStorage.getItem("movieList")));
         movieList.push(formData);
         localStorage.setItem('movieList', JSON.stringify(movieList));
-        console.log(formData, movieList);
         (e.target).classList.remove("btn-primary");
         (e.target).classList.remove("btn-danger");
         (e.target).classList.add("btn-success");
@@ -168,7 +166,6 @@ function createOnePage(movieList) {
     places.classList.add('places');
     places.style.gridTemplateColumns = `repeat(${cinemaPlaces.columns},1fr)`;
     places.style.gridTemplateRows = `repeat(${cinemaPlaces.rows},1fr)`;
-    console.log(movieList[0]);
     for (let r = 0; r < movieList[0].reservation.length; r++) {
         for (let c = 0; c < movieList[0].reservation[r].length; c++) {
             const oneSeat = document.createElement('div');
@@ -233,7 +230,6 @@ function reservePlace(e) {
                 column: Number((e.currentTarget).getAttribute('column'))
             };
             reservedPlaces.push(reservedPlace);
-            console.log(reservedPlaces);
         }
         else {
             (e.currentTarget).setAttribute('prereserved', 'false');
@@ -288,7 +284,6 @@ function confirmReservation(e) {
         }
     }
     localStorage.setItem('movieList', JSON.stringify(currentMovieList));
-    console.log(currentMovieList);
     createOnePage(curOneMovie);
 }
 function imgError(e) {

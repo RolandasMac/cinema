@@ -82,7 +82,6 @@ function createMovieListPage():void{
         toolbarBtnsList[1].classList.remove('d-none');
     }
     movieListPage.innerHTML = "";
-    console.log((localStorage.getItem('movieList')));
     if(localStorage.getItem('movieList')===null||localStorage.getItem('movieList')===undefined||((localStorage.getItem('movieList'))as string).length===2){
         alert('Tuščia');
         localStorage.setItem('movieList', JSON.stringify(movieListHardCode))
@@ -149,7 +148,6 @@ function addNeewMovie(e:Event):void{
         let movieList = JSON.parse((localStorage.getItem("movieList")) as string);
         movieList.push(formData);
         localStorage.setItem('movieList', JSON.stringify(movieList));
-        console.log(formData, movieList);
         ((e.target) as HTMLButtonElement).classList.remove("btn-primary");
         ((e.target) as HTMLButtonElement).classList.remove("btn-danger");
         ((e.target) as HTMLButtonElement).classList.add("btn-success");
@@ -209,7 +207,6 @@ function createOnePage(movieList:Movie[]):void{
         places.classList.add('places');
         places.style.gridTemplateColumns = `repeat(${cinemaPlaces.columns},1fr)`
         places.style.gridTemplateRows = `repeat(${cinemaPlaces.rows},1fr)`
-        console.log(movieList[0]);
             for(let r:number = 0; r<movieList[0].reservation.length; r++){
                 for(let c:number = 0; c<movieList[0].reservation[r].length; c++){
                     const oneSeat:HTMLDivElement = document.createElement('div');
@@ -276,7 +273,6 @@ function reservePlace(e:Event):void{
                 column:Number(((e.currentTarget) as HTMLHtmlElement).getAttribute('column'))
             }
             reservedPlaces.push(reservedPlace);
-            console.log(reservedPlaces);
         }else{
             ((e.currentTarget) as HTMLHtmlElement).setAttribute('prereserved','false');
             ((e.currentTarget) as HTMLHtmlElement).style.backgroundImage = `url("css/img/chair1.png")`;
@@ -329,7 +325,6 @@ function confirmReservation(e:Event):void{
         }
     }
     localStorage.setItem('movieList', JSON.stringify(currentMovieList));
-    console.log(currentMovieList);
     createOnePage(curOneMovie)
 }
 
